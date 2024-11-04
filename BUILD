@@ -4,7 +4,7 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
 load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 
 mixed_language_library(
-    name = "Sources",
+    name = "Dep",
     swift_srcs = [
         "Sources/Dummy.swift",
     ],
@@ -13,6 +13,16 @@ mixed_language_library(
         "Sources/Dummy.m",
     ],
     enable_modules = True,
+)
+
+swift_library(
+    name = "Sources",
+    srcs = [
+        "Sources/Dummy.swift",
+    ],
+    deps = [
+        "Dep",
+    ]
 )
 
 swift_library(
